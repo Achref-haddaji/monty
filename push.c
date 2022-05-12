@@ -1,37 +1,38 @@
 #include "monty.h"
-
 /**
- * push - pushes new node to the end of the stack
- * @stack: double pointer to the head of the stack
- * @line_number: the number of a line of the file
+ * push - adds element on top of the stack
+ * @stack: stack of file lines
+ * @line_number: number of file lines
  *
  * Return: void
  */
 void push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *node;
-	char *num;
+	stack_t *newNode = malloc(sizeof(stack_t));
 
-	num = strtok(NULL, DELIMS);
-	if (num == NULL)
+	(void)line_number;
+
+	if (!stack || !*stack)
 	{
-		printf("L%u: usage: push integer\n", line_number);
-		exit(EXIT_FAILURE);
+		newNode->n = data;
+		newNode->next = NULL;
+		newNode->prev = NULL;
+		*stack = newNode;
+	}
+	else
+	{
+		while ((*stack)->next != NULL)
+		{
+			*stack = (*stack)->next;
+		}
+		newNode->n = data;
+		newNode->next = NULL;
+		newNode->prev = *stack;
+		(*stack)->next = newNode;
 	}
 
-	node = malloc(sizeof(stack_t));
-	if (node == NULL)
+	while ((*stack)->next != NULL)
 	{
-		printf("Error: malloc failed\n");
-		exit(EXIT_FAILURE);
+		*stack = (*stack)->next;
 	}
-
-	node->n = atoi(num);
-	node->prev = NULL;
-	node->next = *stack;
-
-	if (*stack != NULL)
-		(*stack)->prev = node;
-
-	*stack = node;
 }
