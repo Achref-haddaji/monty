@@ -25,9 +25,9 @@ void parsecmd(stack_t **stack, unsigned int lineNumber, char *lineToParse)
 								{"mod", mod},
 								{"pchar", pchar},
 								{NULL, NULL}};
-
 	splitLine = split_str(lineToParse, "\t\n ");
-
+	if (!splitLine[0])
+		return;
 	if (strcmp(splitLine[0], "push") == 0)
 		isPush(splitLine[0], splitLine[1], lineNumber);
 	if (splitLine[0] && strncmp(splitLine[0], "#", 1) == 0)
