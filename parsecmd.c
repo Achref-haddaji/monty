@@ -19,11 +19,6 @@ void parsecmd(stack_t **stack, unsigned int lineNumber, char *lineToParse)
 								{"add", add},
 								{"swap", swap},
 								{"nop", nop},
-								{"div", divis},
-								{"sub", sub},
-								{"mul", mul},
-								{"mod", mod},
-								{"pchar", pchar},
 								{NULL, NULL}};
 	splitLine = split_str(lineToParse, "\t\n ");
 	if (!splitLine[0])
